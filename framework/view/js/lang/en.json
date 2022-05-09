@@ -1,0 +1,33 @@
+{
+    "en" : {
+        "Inicio" : "Homepage",
+        "Cars" : "Cars",
+        "Errores" : "Errors",
+        "Servicios" : "Services",
+        "Conocenos" : "About Us",
+        "Contactanos" : "Contact Us",
+        "Numero de contacto" : "Contact number",
+        "Correo electronico" : "Email",
+        "Direccion" : "Direction",
+        "NO HAY NINGUN COCHE" : "There's not available Cars.",
+        "English" : "English",
+        "Spanish" : "Spanish",
+        "Valencian" : "Valencian",
+        "Modelo" : "Model",
+        "Marca" : "Brand",
+        "Km" : "km",
+        "read" : "Read",
+        "update" : "Update",
+        "delete" : "Delete",
+        "lista" : "CAR LIST",
+        "Matricula" : "Enrollment",
+        "Tipo" : "Type",
+        "Puertas" : "Doors",
+        "Fechamatr" : "Enrollment date",
+        "coche nuevo" : "New Car",
+        "Shop" : "Shop",
+        "Sign in" : "Sign in",
+        "Login" : "Login"
+
+    }
+}

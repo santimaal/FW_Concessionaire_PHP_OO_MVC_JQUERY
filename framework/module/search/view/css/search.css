@@ -1,0 +1,21 @@
+.marcassearch, .ciudadsearch, .autocom, .searchimg{
+    width: auto!important;
+    float: left;
+    /* vertical-align:bottom!important; */
+}
+.search_auto {
+    background-color: white;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    font-style:oblique;
+    display: inline-block;
+    width: auto;
+}
+.searchimg {
+    width: 55px!important;
+    height: 55px!important;
+}
+.searchimg:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+}

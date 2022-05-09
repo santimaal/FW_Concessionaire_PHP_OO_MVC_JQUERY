@@ -1,0 +1,35 @@
+{
+    "val" : {
+        "Inicio" : "Inici",
+        "Cars" : "Cotxes",
+        "Errores" : "Errors",
+        "Servicios" : "Servicis",
+        "Conocenos" : "Coneix-nos",
+        "Contactanos" : "Contacta-nos",
+        "Numero de contacto" : "Numero de contacte",
+        "Correo electronico" : "Email",
+        "Direccion" : "Direccio",
+        "NO HAY NINGUN COCHE" : "No hi han cotxes",
+        "English" : "Ingles",
+        "Spanish" : "Espanyol",
+        "Valencian" : "Valencia",
+        "Modelo" : "Model",
+        "Marca" : "Marca",
+        "Km" : "km",
+        "read" : "Llegir",
+        "update" : "Cambiar",
+        "delete" : "Borrar",
+        "lista" : "LLISTA DE COTXES",
+        "Matricula" : "Matricula",
+        "Tipo" : "Tipus",
+        "Puertas" : "Portes",
+        "Fechamatr" : "Fetxa de matriculacio",
+        "coche nuevo" : "Nou Cotxe",
+        "Shop" : "Tenda",
+        "Sign in" : "Registrar-se",
+        "Login" : "Inciar Sessió"
+
+
+
+    }
+}

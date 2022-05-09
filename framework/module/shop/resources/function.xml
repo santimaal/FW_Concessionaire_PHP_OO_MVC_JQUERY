@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>list</name>
+        <uri>list</uri>
+    </function>
+    <function>
+        <name>allcars</name>
+        <uri>allcars</uri>
+    </function>
+    <function>
+        <name>details</name>
+        <uri>details</uri>
+    </function>
+    <function>
+        <name>filters</name>
+        <uri>filters</uri>
+    </function>
+    <function>
+        <name>get_pagination</name>
+        <uri>get_pagination</uri>
+    </function>
+
+</functions>

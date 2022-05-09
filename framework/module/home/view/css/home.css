@@ -1,0 +1,78 @@
+.carousel__list {
+    text-align: center; 
+    margin: 50px 50px 0px 50px;
+}
+
+.prev {
+    float: left; 
+    margin-left: 20px; 
+    max-width: 100%; 
+    max-height: 30px; 
+    margin-top: -110px;
+}
+.next {
+    float: right; 
+    margin-right: 20px; 
+    max-width: 100%; 
+    max-height: 30px; 
+    margin-top: -110px;
+}
+
+#homePage {
+    text-align:center!important;
+    /* padding-left: 295px;
+    padding-right: 280px; */
+}
+
+#titles h3 {
+    /* text-align: center!important; */
+    margin-bottom: 10px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+#containerCategories, #containerTypes {
+    text-align: center;
+    padding-left: 295px;
+    padding-right: 280px;
+}
+
+#containerCategories {
+    padding-bottom: 150px;
+    /* padding-left: 295px;
+    padding-right: 280px; */
+}
+
+.inner {
+    margin-bottom: 10px;
+}
+
+#containerCategories h3, #containerTypes h3 {
+    margin-top: -10px;
+    background-color: white;
+    color: black;
+}
+
+.newtitle {
+    margin-top: 40px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.news {
+    /* width: 100%; */
+    text-align: center;
+    /* margin-top: 40px; */
+    width: 700px;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.new {
+    text-align: left;
+    display: inline-block;
+    vertical-align:top;
+    margin: 20px;
+    width: 120px;
+    height: auto;
+}

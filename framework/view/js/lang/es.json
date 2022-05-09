@@ -1,0 +1,35 @@
+{
+    "es" : {
+        "Inicio" : "Inicio",
+        "Cars" : "Coches",
+        "Errores" : "Errores",
+        "Servicios" : "Servicios",
+        "Conocenos" : "Conocenos",
+        "Contactanos" : "Contactanos",
+        "Numero de contacto" : "Numero de contacto",
+        "Correo electronico" : "Correo electronico",
+        "Direccion" : "Direccion",
+        "NO HAY NINGUN COCHE" : "NO HAY NINGUN COCHE",
+        "English" : "Ingles",
+        "Spanish" : "Español",
+        "Valencian" : "Valenciano",
+        "Modelo" : "Modelo",
+        "Marca" : "Marca",
+        "Km" : "km",
+        "read" : "Leer",
+        "update" : "Cambiar",
+        "delete" : "Borrar",
+        "lista" : "LISTA DE COCHES",
+        "Matricula" : "Matricula",
+        "Tipo" : "Tipo",
+        "Puertas" : "Puertas",
+        "Fechamatr" : "Fecha de matriculacion",
+        "coche nuevo" : "Coche Nuevo",
+        "Shop" : "Tienda",
+        "Sign in" : "Registrarse",
+        "Login" : "Iniciar Sesion"
+
+
+
+    }
+}
