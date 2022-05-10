@@ -72,4 +72,16 @@
         <name>recover</name>
         <uri>recover</uri>
     </function>
+    <function>
+        <name>recover_pass</name>
+        <uri>recover_pass</uri>
+    </function>
+    <function>
+        <name>sl_gmail</name>
+        <uri>sl_gmail</uri>
+    </function>
+    <function>
+        <name>sl_github</name>
+        <uri>sl_github</uri>
+    </function>
 </functions>

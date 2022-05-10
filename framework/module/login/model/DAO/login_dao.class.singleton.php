@@ -23,6 +23,13 @@ class login_dao
         return $db->listar($stmt);
     }
 
+    public function select_email($db, $email)
+    {
+        $sql = "SELECT * FROM `user` WHERE email='" . $email . "'";
+        $stmt = $db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
+
     public function insert_user($db, $username, $email, $password, $avatar, $email_token, $id_token)
     {
         $sql = "INSERT INTO `user`(`id`, `username`, `email`, `passwd`, `type`, `avatar`, `token_email`) VALUES ('$id_token','$username','$email','$password','client', '$avatar','$email_token')";
@@ -48,5 +55,25 @@ class login_dao
         $sql = "UPDATE `user` SET `token_email`= '$token' WHERE `email` = '$email'";
         $stmt = $db->ejecutar($sql);
         return "ok";
+    }
+    public function insert_gmail($db, $uid, $username, $avatar)
+    {
+        $sql = "INSERT INTO `user`(`id`, `username`, `type`, `avatar`, `activate`) VALUES ($uid, $username, 'client', '$avatar', 'true')";
+        $stmt = $db->ejecutar($sql);
+        return "ok";
+    }
+
+    public function update_pass($db, $token_email, $pass)
+    {
+        $sql = "UPDATE `user` SET `passwd`= $pass WHERE `token_email` = '$token_email'";
+        $stmt = $db->ejecutar($sql);
+        return "update";
+    }
+
+    public function update_tk_email($db, $old_tk, $new_tk)
+    {
+        $sql = "UPDATE `user` SET `token_email`= $new_tk WHERE `token_email` = '$old_tk'";
+        $stmt = $db->ejecutar($sql);
+        return "update";
     }
 }

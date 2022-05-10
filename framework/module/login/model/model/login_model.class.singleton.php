@@ -40,4 +40,39 @@ class login_model
     {
         return $this->bll->get_recover_BLL($args[0]);
     }
+
+    public function get_sl_gmail($args)
+    {
+        return $this->bll->get_sl_gmail_BLL($args);
+    }
+
+    public function get_recover_pass($args)
+    {
+        return $this->bll->get_recover_pass_BLL($args[0], $args[1]);
+    }
+
+    public function logout()
+    {
+        return $this->bll->logout_BLL();
+    }
+
+    public function get_refresh_token($token)
+    {
+        return $this->bll->get_refresh_token_BLL($token);
+    }
+
+    public function get_refresh_cookie()
+    {
+        return $this->bll->get_refresh_cookie_BLL();
+    }
+
+    public function get_controluser($token)
+    {
+        return $this->bll->get_controluser_BLL($token);
+    }
+
+    public function get_actividad()
+    {
+        return $this->bll->get_actividad_BLL();
+    }
 }

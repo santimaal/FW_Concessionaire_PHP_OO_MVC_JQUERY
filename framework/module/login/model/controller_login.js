@@ -144,12 +144,22 @@ function clicking() {
         if (pass1 == pass2) {
             var pass_val = validate_password(pass1);
             if (pass_val == false) {
-                recover_password();
+                recover_password(pass1);
+                // setTimeout('window.location.href = "?page=login&op=viewreg";', 1500);
             }
         } else {
             document.getElementById('error_password').innerHTML = "Not the same password";
         }
-    })
+    });
+
+    // $('#login__form').on("click", "#botonlogin", function () {
+    //     sl_gmail();
+    // });
+
+    $('#login__form').on("click", "#botonl", function () {
+        sl_github();
+    });
+
 
 }
 
@@ -158,7 +168,7 @@ function load_content() {
     console.log(path);
     if (path[3] === 'recover') {
         console.log("recover");
-        load_newpasswd(path[2]);
+        load_newpasswd();
     } else if (path[3] === 'verify') {
         console.log("verifyyy");
         ajaxPromise('?page=login&op=update_activate', 'POST', 'JSON', { token: path[2] })
@@ -168,6 +178,58 @@ function load_content() {
     }
 }
 
+function sl_gmail() {
+    var config = {
+        apiKey: "AIzaSyBTcYCXwCVU0TjnIQzmTUpEhtdijTvPtJY",
+        authDomain: "concessionaire-santidaw.firebaseapp.com",
+        databaseURL: "https://concessionaire-santidaw.firebaseio.com",
+        projectId: "concessionaire-santidaw",
+        storageBucket: "",
+        messagingSenderId: "613764177727"
+    };
+
+    firebase.initializeApp(config);
+
+    var provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('email');
+
+    var authService = firebase.auth();
+
+    // manejador de eventos para loguearse
+    document.getElementById('botonlogin').addEventListener('click', function () {
+        authService.signInWithPopup(provider)
+            .then(function (result) {
+                console.log(result.user.uid);
+
+                ajaxPromise("?page=login&op=sl_gmail",
+                    'POST', 'JSON', { 'id': result.user.uid, 'username': result.user.displayName, 'avatar': result.user.photoURL })
+                    .then(function (data) {
+                        console.log(data);
+                    });
+                // console.log('Hemos autenticado al usuario ', result.user);
+                // console.log(result.user.displayName);
+                // console.log(result.user.email);
+                // console.log(result.user.photoURL);
+            })
+            .catch(function (error) {
+                console.log('Se ha encontrado un error:', error);
+            });
+    })
+}
+
+function recover_password(pass) {
+    let path = window.location.search.split('&');
+
+    ajaxPromise("?page=login&op=recover_pass",
+        'POST', 'JSON', { 'token_email': path[2], 'pass': pass})
+        .then(function (data) {
+            console.log(data);
+        });
+}
+
+function sl_github() {
+    console.log("git");
+}
 function load_newpasswd() {
     $('#login__form').empty();
     console.log("neww");
@@ -190,6 +252,8 @@ $(document).ready(function () {
     // $("html, body").animate({scrollTop: $('#scroll').offset().top }, 1000);
     clicking();
     load_content();
+    sl_gmail();
+
     // console.log("holaaa");
 
 });

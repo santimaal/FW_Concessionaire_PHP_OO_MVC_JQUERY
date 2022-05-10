@@ -49,8 +49,12 @@ function register() {
     ajaxPromise("?page=login&op=register",
       'POST', 'JSON', data)
       .then(function (data) {
-        if (data == "error") {
+        console.log(data);
+        if (data == "errorusr") {
           document.getElementById('error_username').innerHTML = "User ya creado";
+        }
+        if (data == "errorem") {
+          document.getElementById('error_email').innerHTML = "Email ya creado";
         }
         if (data == "ok") {
           toastr['warning']("Please verify your email");
