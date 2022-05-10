@@ -85,15 +85,35 @@ class login_bll
     public function get_user_BLL($token)
     {
         $json = tokendecode($token);
-        // return $json['username'];
         return $this->dao->select_user($this->db, $json['username']);
     }
 
     public function get_login_BLL($usr, $pass)
     {
-        $json = tokencreate($usr);
-        return $json;
-        return $this->dao->select_user($this->db, $usr);
+        $check = login_bll::get_user_repeat_BLL($usr);
+
+        if (!$check) {
+            echo json_encode("username");
+        } else {
+            try {
+                $rdo = $this->dao->select_user($this->db, $usr);
+                $token = tokencreate($rdo[0]['username']);
+                $_SESSION['username'] = $rdo[0]['username'];
+                $_SESSION['tiempo'] = time();
+            } catch (Exception $e) {
+                return "errora";
+            }
+            if (!$rdo) {
+                return "errorb";
+            } else {
+                if (password_verify($pass, $rdo[0]['passwd'])) {
+                    return $token;
+                } else {
+                    return "error_passwd";
+                    exit;
+                }
+            }
+        }
     }
 
     public function get_update_activate_BLL($args)
@@ -103,14 +123,36 @@ class login_bll
 
     public function get_sl_gmail_BLL($args)
     {
-        $uid = "'gmail | $args[0]'";
-        $usr = "'gmail | $args[1]'";
+        $uid = "gmail | $args[0]";
+        $usr = "gmail | $args[1]";
         $check = login_bll::get_user_repeat_BLL($usr);
+        $tokenn = tokencreate($usr);
+        $_SESSION['username'] = $usr;
+        $_SESSION['tiempo'] = time();
         if ($check) {
-            return "exist";
+            return $tokenn;
+        } else {
+            $this->dao->insert_gmail($this->db, $uid, $usr, $args[2]);
+            return $tokenn;
         }
+    }
 
-        return $this->dao->insert_gmail($this->db, $uid, $usr, $args[2]);
+    public function get_sl_github_BLL($args)
+    {
+        $uid = "github | $args[0]";
+        $usr = "github | $args[1]";
+        $check = login_bll::get_user_repeat_BLL($usr);
+        $tokenn = tokencreate($usr);
+        $_SESSION['username'] = $usr;
+        $_SESSION['tiempo'] = time();
+        if ($check) {
+            return $tokenn;
+        } else {
+            $uid = "'github | $args[0]'";
+            $usr = "'github | $args[1]'";
+            $this->dao->insert_gmail($this->db, $uid, $usr, $args[2]);
+            return $tokenn;
+        }
     }
 
     public function get_recover_pass_BLL($email_token, $pass)

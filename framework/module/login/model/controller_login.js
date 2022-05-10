@@ -4,6 +4,7 @@ function login() {
         ajaxPromise("?page=login&op=login",
             'POST', 'JSON', data)
             .then(function (data) {
+                console.log(data);
                 if (data == "error_passwd") {
                     $("#error_password").html('La contraseña no es correcta');
                 } else {
@@ -196,7 +197,7 @@ function sl_gmail() {
     var authService = firebase.auth();
 
     // manejador de eventos para loguearse
-    document.getElementById('botonlogin').addEventListener('click', function () {
+    document.getElementById('botonsl_gmail').addEventListener('click', function () {
         authService.signInWithPopup(provider)
             .then(function (result) {
                 console.log(result.user.uid);
@@ -204,7 +205,8 @@ function sl_gmail() {
                 ajaxPromise("?page=login&op=sl_gmail",
                     'POST', 'JSON', { 'id': result.user.uid, 'username': result.user.displayName, 'avatar': result.user.photoURL })
                     .then(function (data) {
-                        console.log(data);
+                        localStorage.setItem('token', data);
+                        location.href = "index.php?page=home&op=list";
                     });
                 // console.log('Hemos autenticado al usuario ', result.user);
                 // console.log(result.user.displayName);
@@ -221,14 +223,50 @@ function recover_password(pass) {
     let path = window.location.search.split('&');
 
     ajaxPromise("?page=login&op=recover_pass",
-        'POST', 'JSON', { 'token_email': path[2], 'pass': pass})
+        'POST', 'JSON', { 'token_email': path[2], 'pass': pass })
         .then(function (data) {
             console.log(data);
         });
 }
 
 function sl_github() {
-    console.log("git");
+    // Initialize Firebase
+    // var config = {
+    //     apiKey: "AIzaSyBTcYCXwCVU0TjnIQzmTUpEhtdijTvPtJY",
+    //     authDomain: "concessionaire-santidaw.firebaseapp.com",
+    //     databaseURL: "https://concessionaire-santidaw.firebaseio.com",
+    //     projectId: "concessionaire-santidaw",
+    //     storageBucket: "",
+    //     messagingSenderId: "613764177727"
+    //   };
+    //   console.log("apaa");
+
+    //   firebasegh.initializeApp(config);
+
+      var provider = new firebase.auth.GithubAuthProvider();
+      var authService = firebase.auth();
+
+      document.getElementById('botonsl_github').addEventListener('click', function() {
+          authService.signInWithPopup(provider)
+          .then(function(result) {
+            ajaxPromise("?page=login&op=sl_github",
+            'POST', 'JSON', { 'id': result.user.uid, 'username': result.user.displayName, 'avatar': result.user.photoURL })
+            .then(function (data) {
+                localStorage.setItem('token', data);
+                location.href = "index.php?page=home&op=list";
+            });
+          })
+        //   .catch(function(error) {
+        //     var errorCode = error.code;
+        //     console.log(errorCode);
+        //     var errorMessage = error.message;
+        //     console.log(errorMessage);
+        //     var email = error.email;
+        //     console.log(email);
+        //     var credential = error.credential;
+        //     console.log(credential);
+        //   });
+      })
 }
 function load_newpasswd() {
     $('#login__form').empty();
@@ -253,6 +291,7 @@ $(document).ready(function () {
     clicking();
     load_content();
     sl_gmail();
+    sl_github();
 
     // console.log("holaaa");
 

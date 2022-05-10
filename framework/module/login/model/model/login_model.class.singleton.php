@@ -46,6 +46,11 @@ class login_model
         return $this->bll->get_sl_gmail_BLL($args);
     }
 
+    public function get_sl_github($args)
+    {
+        return $this->bll->get_sl_github_BLL($args);
+    }
+
     public function get_recover_pass($args)
     {
         return $this->bll->get_recover_pass_BLL($args[0], $args[1]);
