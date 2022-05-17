@@ -167,7 +167,7 @@ function clicking() {
                     });
             }
         } else {
-            localStorage.setItem('callback', 'index.php?page=controller_shop&op=list');
+            localStorage.setItem('callback', 'index.php?page=shop&op=list');
             var prnlike = this.getAttribute('class').split(' ');
             if (prnlike[5] == 'dtlike') {
                 localStorage.setItem('detail', this.getAttribute('id'));

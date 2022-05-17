@@ -122,6 +122,8 @@ function clicking() {
             if (em_val == false) {
                 send_recover($(this).val());
             }
+            toastr['success']("Email recover sended");
+            setTimeout('location.href = "?page=home&op=list"; ', 1500);
         });
     });
 
@@ -225,7 +227,9 @@ function recover_password(pass) {
     ajaxPromise("?page=login&op=recover_pass",
         'POST', 'JSON', { 'token_email': path[2], 'pass': pass })
         .then(function (data) {
-            console.log(data);
+            toastr['success']("Password Changed");
+            setTimeout('location.href = "?page=home&op=list"; ', 1500);
+
         });
 }
 
@@ -243,19 +247,19 @@ function sl_github() {
 
     //   firebasegh.initializeApp(config);
 
-      var provider = new firebase.auth.GithubAuthProvider();
-      var authService = firebase.auth();
+    var provider = new firebase.auth.GithubAuthProvider();
+    var authService = firebase.auth();
 
-      document.getElementById('botonsl_github').addEventListener('click', function() {
-          authService.signInWithPopup(provider)
-          .then(function(result) {
-            ajaxPromise("?page=login&op=sl_github",
-            'POST', 'JSON', { 'id': result.user.uid, 'username': result.user.displayName, 'avatar': result.user.photoURL })
-            .then(function (data) {
-                localStorage.setItem('token', data);
-                location.href = "index.php?page=home&op=list";
-            });
-          })
+    document.getElementById('botonsl_github').addEventListener('click', function () {
+        authService.signInWithPopup(provider)
+            .then(function (result) {
+                ajaxPromise("?page=login&op=sl_github",
+                    'POST', 'JSON', { 'id': result.user.uid, 'username': result.user.displayName, 'avatar': result.user.photoURL })
+                    .then(function (data) {
+                        localStorage.setItem('token', data);
+                        location.href = "index.php?page=home&op=list";
+                    });
+            })
         //   .catch(function(error) {
         //     var errorCode = error.code;
         //     console.log(errorCode);
@@ -266,7 +270,7 @@ function sl_github() {
         //     var credential = error.credential;
         //     console.log(credential);
         //   });
-      })
+    })
 }
 function load_newpasswd() {
     $('#login__form').empty();

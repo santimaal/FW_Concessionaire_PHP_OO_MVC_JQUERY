@@ -123,8 +123,8 @@ class login_bll
 
     public function get_sl_gmail_BLL($args)
     {
-        $uid = "gmail | $args[0]";
-        $usr = "gmail | $args[1]";
+        $uid = 'gmail |' . $args[0] . '';
+        $usr = 'gmail |' . $args[1] . '';
         $check = login_bll::get_user_repeat_BLL($usr);
         $tokenn = tokencreate($usr);
         $_SESSION['username'] = $usr;
@@ -227,15 +227,12 @@ class login_bll
         if ($op == 'like_select') {
             $json = tokendecode($token);
             return $this->dao->select_likes($this->db, $json['username']);
-
         } else if ($op == 'like') {
             $json = tokendecode($token);
             return $this->dao->insert_like($this->db, $json['username'], $_POST['idcar']);
-
         } else if ($op == 'unlike') {
             $json = tokendecode($token);
             return $this->dao->delete_like($this->db, $json['username'], $_POST['idcar']);
-
         }
     }
 }

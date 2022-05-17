@@ -26,6 +26,7 @@ function load_menu() {
 function logged() {
     ajaxPromise('?page=login&op=data_user', 'POST', 'JSON', { token: localStorage.getItem('token') })
         .then(function (data) {
+            console.log(data);
             $('<li></li>').attr({ 'class': 'nav__item' }).html('<img src="' + data[0].avatar + '" class="avatar"></img>').appendTo('#nav_op');
             $('<li></li>').attr({ 'class': 'nav__item' }).html('<a class="user">' + data[0].username + '</a>').appendTo('#nav_op');
             $('<li></li>').attr({ 'class': 'nav__item', 'id': 'logout' }).html('<a href="#" data-tr="Logout">Logout</a>').appendTo('#nav_op');
