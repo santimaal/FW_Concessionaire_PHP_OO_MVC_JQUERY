@@ -78,4 +78,9 @@ class controller_login
     {
         echo json_encode(common::load_model('login_model', 'get_actividad'));
     }
+
+    function likeoption()
+    {
+        echo json_encode(common::load_model('login_model', 'get_likeoption', [$_POST['token'], $_POST['op']]));
+    }
 }

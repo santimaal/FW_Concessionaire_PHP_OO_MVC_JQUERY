@@ -76,4 +76,25 @@ class login_dao
         $stmt = $db->ejecutar($sql);
         return "update";
     }
+
+    public function select_likes($db, $username)
+    {
+        $sql = "SELECT * FROM likes l WHERE l.id_usu=(SELECT u.id FROM user u WHERE u.username='" . $username . "');";
+        $stmt = $db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
+
+    public function insert_like($db, $username, $id_car)
+    {
+        $sql = "INSERT INTO `likes`(`id_usu`, `id_car`) VALUES ((SELECT u.id FROM user u WHERE u.username='" . $username . "'),'" . $id_car . "');";
+        $stmt = $db->ejecutar($sql);
+        return "ok";
+    }
+
+    public function delete_like($db, $username, $id_car)
+    {
+        $sql = "DELETE FROM likes WHERE likes.id_usu=(SELECT u.id FROM user u WHERE u.username='" . $username . "') AND likes.id_car='" . $id_car . "';";
+        $stmt = $db->ejecutar($sql);
+        return "ok";
+    }
 }

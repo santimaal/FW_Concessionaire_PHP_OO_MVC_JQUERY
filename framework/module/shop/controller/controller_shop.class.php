@@ -4,7 +4,6 @@ class controller_shop
 
     function list()
     {
-        // echo json_encode(common::load_model('shop_model', 'get_orderby', ['ASC', 'precio']));
         common::load_view('top_page_shop.html', VIEW_PATH_SHOP . 'shop.html');
     }
 
@@ -18,14 +17,9 @@ class controller_shop
         echo json_encode(common::load_model('shop_model', 'get_list_filters_products', [$_GET['puertas'], $_GET['color'], $_GET['marca']]));
     }
 
-    function pagination()
+    function get_pagination()
     {
         echo json_encode(common::load_model('shop_model', 'get_pagination'));
-    }
-
-    function pagination_filters()
-    {
-        echo json_encode(common::load_model('shop_model', 'get_pagination_filters', $_POST['filters']));
     }
 
     function details()
@@ -40,11 +34,7 @@ class controller_shop
     
     function orderby()
     {
-        // echo json_encode(common::load_model('shop_model', 'get_orderby', [$_GET['type'], $_GET['order']]));
-        echo json_encode($_GET['type']);
-        exit;
-        // echo json_encode(common::load_model('shop_model', 'get_orderby', ['precio', 'ASC']));
-
+        echo json_encode(common::load_model('shop_model', 'get_orderby', [$_GET['type'], $_GET['order']]));
     }
 
     function load_like()
@@ -60,5 +50,22 @@ class controller_shop
     function insert_cart()
     {
         echo json_encode(common::load_model('shop_model', 'get_insert_cart', [$_POST['user'], $_POST['id']]));
+    }
+
+    function related()
+    {
+        echo json_encode(common::load_model('shop_model', 'get_related', [$_GET['brand'], $_GET['id']]));
+    }
+    function filtbrand()
+    {
+        echo json_encode(common::load_model('shop_model', 'get_filtbrand', $_GET['marca']));
+    }
+    function filtcategory()
+    {
+        echo json_encode(common::load_model('shop_model', 'get_filtcategory', $_GET['category']));
+    }
+    function filttype()
+    {
+        echo json_encode(common::load_model('shop_model', 'get_filttype', $_GET['type']));
     }
 }

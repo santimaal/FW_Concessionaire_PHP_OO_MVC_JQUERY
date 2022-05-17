@@ -92,7 +92,7 @@ function loadDetailCar(id) {
 function loadrelated(data, num = 0) {
 
     let limit = num;
-    ajaxPromise('module/shop/controller/controller_shop.php?op=related&brand=' + data.marca + '&id=' + data.id + '&limit=' + limit,
+    ajaxPromise('?page=shop&op=related&brand=' + data.marca + '&id=' + data.id + '&limit=' + limit,
         'GET', 'JSON')
         .then(function (data) {
             $('.morebtn').empty();
@@ -151,7 +151,7 @@ function clicking() {
             if (prnlike[4] == 'regular') {
 
                 $('<i id=' + id + ' class="fa-solid fa-heart fa-xl right solid"></i>').appendTo('#' + id + '.like');
-                ajaxPromise("module/login/controller/controller_login.php?op=likeoption",
+                ajaxPromise("?page=login&op=likeoption",
                     'POST', 'JSON', { 'token': localStorage.getItem('token'), 'idcar': id, 'op': 'like' })
                     .then(function (data) {
                         console.log(data);
@@ -160,7 +160,7 @@ function clicking() {
             } else if (prnlike[4] == 'solid') {
 
                 $('<i id=' + id + ' class="fa-regular fa-heart fa-xl right regular"></i>').appendTo('#' + id + '.like');
-                ajaxPromise("module/login/controller/controller_login.php?op=likeoption",
+                ajaxPromise("?page=login&op=likeoption",
                     'POST', 'JSON', { 'token': localStorage.getItem('token'), 'idcar': id, 'op': 'unlike' })
                     .then(function (data) {
                         console.log(data);
@@ -172,7 +172,7 @@ function clicking() {
             if (prnlike[5] == 'dtlike') {
                 localStorage.setItem('detail', this.getAttribute('id'));
             }
-            location.href = "index.php?page=controller_login&op=login_view";
+            location.href = "?page=login&op=viewlog";
 
         }
     });
@@ -287,7 +287,7 @@ function all_lists_products() {
 
     if (marca != null) {
         // ajaxForSearch('?Fs=shop&op=filter&puertas=' + puertas + '&color=' + colowr + '&marca=' + marca[0].marca[0]);
-        ajaxForSearch('module/shop/controller/controller_shop.php?op=filters&puertas=' + puertas + '&color=' + color + '&marca=' + marca[0].marca[0]);
+        ajaxForSearch('?page=shop&op=filters&puertas=' + puertas + '&color=' + color + '&marca=' + marca[0].marca[0]);
     } else {
         ajaxForSearch('?page=shop&op=filters&puertas=' + puertas + '&color=' + color + '&marca=' + 'a');
 
@@ -342,7 +342,7 @@ function ajaxForSearch(durl, scrolling = null) {
 function likeshighlight() {
     if (localStorage.getItem('token')) {
         console.log("token");
-        ajaxPromise("module/login/controller/controller_login.php?op=likeoption",
+        ajaxPromise("?page=login&op=likeoption",
             'POST', 'JSON', { 'token': localStorage.getItem('token'), 'op': 'like_select' })
             .then(function (data) {
                 console.log(data);
@@ -436,17 +436,17 @@ function remove_filter() {
 
 function filtmarca() {
     var todo = JSON.parse(localStorage.getItem('marca'));
-    ajaxForSearch('module/shop/controller/controller_shop.php?op=filtbrand&marca=' + todo[0].marca[0] + '');
+    ajaxForSearch('?page=shop&op=filtbrand&marca=' + todo[0].marca[0] + '');
 }
 
 function filtcategory() {
     var todo = JSON.parse(localStorage.getItem('category'));
-    ajaxForSearch('module/shop/controller/controller_shop.php?op=filtcategory&category=' + todo[0].category[0] + '');
+    ajaxForSearch('?page=shop&op=filtcategory&category=' + todo[0].category[0] + '');
 }
 
 function filttype() {
     var todo = JSON.parse(localStorage.getItem('type'));
-    ajaxForSearch('module/shop/controller/controller_shop.php?op=filttype&type=' + todo[0].type[0] + '');
+    ajaxForSearch('?page=shop&op=filttype&type=' + todo[0].type[0] + '');
 }
 function search() {
     var auto = JSON.parse(localStorage.getItem('keyup'));
@@ -456,13 +456,13 @@ function search() {
     var marca = JSON.parse(localStorage.getItem('marcasearch'));
     var city = JSON.parse(localStorage.getItem('city'));
     if (marca == null && city == null) {
-        url = "module/search/controller/controller_search.php?op=autocomplete&auto=" + auto + "";
+        url= "?page=search&op=autocomplete&auto="+auto+"&marca="+null+"&city="+null;
     } else if (marca != null && city == null) {
-        url = "module/search/controller/controller_search.php?op=autocomplete&marca=" + marca[0].change + "&auto=" + auto + "";
+        url= "?page=search&op=autocomplete&marca="+marca[0].change+"&auto="+auto+"&city="+null;
     } else if (marca != null && city != null) {
-        url = "module/search/controller/controller_search.php?op=autocomplete&marca=" + marca[0].change + "&city=" + city[0].change + "&auto=" + auto + "";
+        url= "?page=search&op=autocomplete&marca="+marca[0].change+"&city="+city[0].change+"&auto="+auto+"";
     } else {
-        url = "module/search/controller/controller_search.php?op=autocomplete&city=" + city[0].change + "&auto=" + auto + "";
+        url= "?page=search&op=autocomplete&city="+city[0].change+"&auto="+auto+"marca="+null;
     }
     ajaxForSearch(url);
 }
@@ -508,11 +508,11 @@ function loadorder() {
 
 
 function bootpag() {
-    ajaxPromise('module/shop/controller/controller_shop.php?op=count', 'POST', 'JSON')
+    ajaxPromise('?page=shop&op=get_pagination', 'POST', 'JSON')
         .then(function (data) {
             console.log(data);
-            console.log(data.count.length);
-            dataint = parseInt(data.count);
+            // console.log(data.count.length);
+            dataint = parseInt(data[0].count);
             cont = (cont) + (dataint);
 
             $('#page-selection').bootpag({
@@ -525,7 +525,6 @@ function bootpag() {
                 localStorage.setItem('pag', num);
                 ajaxForSearch('index.php?page=shop&op=allcars&num=' + (localStorage.getItem('pag') * 5 - 5));
             });
-            // console.log(data[0]x.length);
         });
 }
 

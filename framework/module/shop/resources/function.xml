@@ -20,5 +20,24 @@
         <name>get_pagination</name>
         <uri>get_pagination</uri>
     </function>
-
+    <function>
+        <name>related</name>
+        <uri>related</uri>
+    </function>
+    <function>
+        <name>filtbrand</name>
+        <uri>filtbrand</uri>
+    </function>
+    <function>
+        <name>filttype</name>
+        <uri>filttype</uri>
+    </function>
+    <function>
+        <name>filtcategory</name>
+        <uri>filtcategory</uri>
+    </function>
+        <function>
+        <name>orderby</name>
+        <uri>orderby</uri>
+    </function>
 </functions>

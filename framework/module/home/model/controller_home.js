@@ -94,7 +94,7 @@ function clicking() {
     marca.push({ "marca": [this.getAttribute('id')] });
     localStorage.setItem('marca', JSON.stringify(marca));
     setTimeout(function () {
-      window.location.href = 'index.php?page=controller_shop&op=list';
+      window.location.href = 'index.php?page=shop&op=list';
     }, 500);
   });
   $(document).on("click", '.inner', function () {
@@ -108,7 +108,7 @@ function clicking() {
     localStorage.removeItem('category')
     localStorage.setItem('category', JSON.stringify(category));
     setTimeout(function () {
-      window.location.href = 'index.php?page=controller_shop&op=list';
+      window.location.href = 'index.php?page=shop&op=list';
     }, 500);
   });
   $(document).on("click", '.inner3', function () {
@@ -122,7 +122,7 @@ function clicking() {
     localStorage.removeItem('type')
     localStorage.setItem('type', JSON.stringify(type));
     setTimeout(function () {
-      window.location.href = 'index.php?page=controller_shop&op=list';
+      window.location.href = 'index.php?page=shop&op=list';
     }, 500);
   });
 

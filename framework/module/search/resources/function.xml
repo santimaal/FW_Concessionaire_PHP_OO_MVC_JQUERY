@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>marcas</name>
+        <uri>marcas</uri>
+    </function>
+    <function>
+        <name>ciudades_m</name>
+        <uri>ciudades_m</uri>
+    </function>
+    <function>
+        <name>ciudades</name>
+        <uri>ciudades</uri>
+    </function>
+    <function>
+        <name>autocomplete</name>
+        <uri>autocomplete</uri>
+    </function>
+    <function>
+        <name>autocomplete_mc</name>
+        <uri>autocomplete_mc</uri>
+    </function>
+    <function>
+        <name>autocomplete_c</name>
+        <uri>autocomplete_c</uri>
+    </function>
+</functions>

@@ -22,11 +22,6 @@ class shop_bll
 		return self::$_instance;
 	}
 
-	public function get_filters_BLL()
-	{
-		return $this->dao->select_filters($this->db);
-	}
-
 	public function get_list_products_BLL($args)
 	{
 		return $this->dao->select_list_products($this->db, $args);
@@ -97,11 +92,6 @@ class shop_bll
 		return $this->dao->select_pagination($this->db);
 	}
 
-	public function get_pagination_filters_BLL($args)
-	{
-		return $this->dao->select_pagination_filters($this->db, json_decode($args));
-	}
-
 	public function get_orderby_BLL($args)
 	{
 		return $this->dao->select_orderby($this->db, $args[1], $args[0]);
@@ -111,10 +101,10 @@ class shop_bll
 	{
 		$data = array();
 
-		$car = $this -> dao -> select_details($this->db, $args);
-		$img = $this -> dao -> select_details_img($this->db, $args);
+		$car = $this->dao->select_details($this->db, $args);
+		$img = $this->dao->select_details_img($this->db, $args);
 		$data[0] = $car;
-        $data[1][] = $img;
+		$data[1][] = $img;
 
 		return $data;
 	}
@@ -124,20 +114,27 @@ class shop_bll
 		return $this->dao->update_visit($this->db, $args);
 	}
 
-	public function get_load_like_BLL($args)
+	public function get_related_BLL($brand, $id)
 	{
-		$jwt = jwt_process::decode($args);
-		$jwt = json_decode($jwt, TRUE);
-		return $this->dao->select_load_likes($this->db, $jwt['name']);
+		if ($this->dao->get_related($this->db, $brand, $id, $_GET['limit'] = 0)) {
+			return $this->dao->get_related($this->db, $brand, $id, $_GET['limit'] = 0);
+		} else {
+			return "error";
+		}
 	}
 
-	public function get_click_like_BLL($args)
+	public function get_filtbrand_BLL($args)
 	{
-		$jwt = jwt_process::decode($args[1]);
-		$jwt = json_decode($jwt, TRUE);
-		if ($this->dao->select_likes($this->db, $args[0], $jwt['name'])) {
-			return $this->dao->delete_likes($this->db, $args[0], $jwt['name']);
-		}
-		return $this->dao->insert_likes($this->db, $args[0], $jwt['name']);
+		return $this->dao->get_brand($this->db, $args);
+	}
+
+	public function get_filtcategory_BLL($args)
+	{
+		return $this->dao->get_cat($this->db, $args);
+	}
+
+	public function get_filttype_BLL($args)
+	{
+		return $this->dao->get_type($this->db, $args);
 	}
 }

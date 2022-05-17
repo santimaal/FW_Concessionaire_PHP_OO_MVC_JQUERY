@@ -192,7 +192,7 @@ class login_bll
 
     public function get_refresh_token_BLL($token)
     {
-        $json = tokendecode($_POST['token']);
+        $json = tokendecode($token);
         $tokenn = tokencreate($json['username']);
         return $tokenn;
     }
@@ -219,6 +219,23 @@ class login_bll
             } else {
                 return 'nookay';
             }
+        }
+    }
+
+    public function get_likeoption_BLL($token, $op)
+    {
+        if ($op == 'like_select') {
+            $json = tokendecode($token);
+            return $this->dao->select_likes($this->db, $json['username']);
+
+        } else if ($op == 'like') {
+            $json = tokendecode($token);
+            return $this->dao->insert_like($this->db, $json['username'], $_POST['idcar']);
+
+        } else if ($op == 'unlike') {
+            $json = tokendecode($token);
+            return $this->dao->delete_like($this->db, $json['username'], $_POST['idcar']);
+
         }
     }
 }

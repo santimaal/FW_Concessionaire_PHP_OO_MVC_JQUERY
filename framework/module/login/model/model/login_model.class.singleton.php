@@ -80,4 +80,9 @@ class login_model
     {
         return $this->bll->get_actividad_BLL();
     }
+    
+    public function get_likeoption($args)
+    {
+        return $this->bll->get_likeoption_BLL($args[0], $args[1]);
+    }
 }

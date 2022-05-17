@@ -1,7 +1,7 @@
 function load_marcas(){
     localStorage.removeItem('marcasearch');
 
-    ajaxPromise("module/search/controller/controller_search.php?op=marcas",
+    ajaxPromise("?page=search&op=marcas",
         'GET', 'JSON')
         .then(function(data) {
             $('.marcassearch').empty();
@@ -23,10 +23,10 @@ function load_ciudades(){
     var marca = JSON.parse(localStorage.getItem('marcasearch'));
     var url = null;
     if (marca!=null) {
-        url= "module/search/controller/controller_search.php?op=ciudades&marca="+marca[0].change+"";
+        url= "?page=search&op=ciudades_m&marca="+marca[0].change+"";
     }
     else {
-        url="module/search/controller/controller_search.php?op=ciudades";
+        url="?page=search&op=ciudades";
     }
     ajaxPromise(url,
         'GET', 'JSON')
@@ -53,13 +53,13 @@ function autocomplete() {
         var auto=$('#autocom').val();
         var url=null;
          if (marca==null && city==null)  {
-             url= "module/search/controller/controller_search.php?op=autocomplete&auto="+auto+"";
+             url= "?page=search&op=autocomplete&auto="+auto+"&marca="+null+"&city="+null;
          } else if (marca!=null && city==null) {
-            url= "module/search/controller/controller_search.php?op=autocomplete&marca="+marca[0].change+"&auto="+auto+"";
+            url= "?page=search&op=autocomplete&marca="+marca[0].change+"&auto="+auto+"&city="+null;
          } else if (marca!=null && city!=null){
-            url= "module/search/controller/controller_search.php?op=autocomplete&marca="+marca[0].change+"&city="+city[0].change+"&auto="+auto+"";
+            url= "?page=search&op=autocomplete&marca="+marca[0].change+"&city="+city[0].change+"&auto="+auto+"";
          } else {
-            url= "module/search/controller/controller_search.php?op=autocomplete&city="+city[0].change+"&auto="+auto+"";
+            url= "?page=search&op=autocomplete&city="+city[0].change+"&auto="+auto+"marca="+null;
          }
         
          ajaxPromise(url,
@@ -96,13 +96,13 @@ $(document).on('change', '.ciudadsearch',  function(){
 $(document).on('click', '.searchElement',  function(){
     localStorage.setItem('detail', JSON.stringify(this.getAttribute('id')));
     setTimeout(function(){ 
-        window.location.href = 'index.php?page=controller_shop&op=list';
+        window.location.href = '?page=shop&op=list';
       }, 500);  
 });
 $(document).on('click', '.searchimg',  function(){
     localStorage.removeItem('detail');
     setTimeout(function(){ 
-        window.location.href = 'index.php?page=controller_shop&op=list';
+        window.location.href = '?page=shop&op=list';
       }, 500);  
 });
 }
