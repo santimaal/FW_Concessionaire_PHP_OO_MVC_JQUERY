@@ -6,7 +6,7 @@
 3. [Tecnologías Empleadas](#Tecnologías-empleadas)
 4. [Librerías Empleadas](#Librerías-empleadas)
 
-# Santi's House
+## Santi's House
 
 Santi's House es una web facil para el usuario donde se puede comprar una variedad de coches.
 
